@@ -1,3 +1,4 @@
+import FooterComponent from "../../Footer/FooterComponent";
 import HeaderComponent from "../../Header/HeaderComponent";
 import TableAllCoins from "./TableAllCoins/TableAllCoins";
 
@@ -7,6 +8,7 @@ const MainPage = () =>{
         <>
             <HeaderComponent />
             <TableAllCoins />
+            <FooterComponent />
         </>
     )
 }
