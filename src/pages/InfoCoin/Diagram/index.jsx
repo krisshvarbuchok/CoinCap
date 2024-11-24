@@ -1,7 +1,7 @@
-import AllTime from "./AllTime/AllTime";
+import AllTime from "./AllTime";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setTime } from "../../../../redux/slice/timeForDiagramSlice";
+import { setTime } from "../../../redux/slice/timeForDiagramSlice";
 
 
 const Diagram = () => {

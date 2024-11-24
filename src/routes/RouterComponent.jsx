@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../components/Pages/MainPage/MainPage";
-import InfoCoin from "../components/Pages/InfoCoin/InfoCoin";
-
+import MainPage from "../pages/MainPage/index";
+import InfoCoin from "../pages/InfoCoin/index";
 const RouterComponent = () => {
 
     return (

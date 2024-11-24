@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const fetchGetMoreInfo = createAsyncThunk('info/fetchGetMoreInfo', async (id) => {
     try {
-        const response = await fetch(`https://api.coincap.io/v2/assets/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v2/assets/${id}`);
         const result = await response.json();
         console.log(result.data);
         return result.data;

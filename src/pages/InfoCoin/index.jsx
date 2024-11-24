@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import {useEffect} from "react";
-import HeaderComponent from "../../Header/HeaderComponent";
-import NameCoin from "./NameCoin/NameCoin";
-import BuyCoin from "./BuyCoin/BuyCoin";
-import InfoTable from "./InfoTable/InfoTable";
-import Diagram from "./Diagram/Diagram";
-import FooterComponent from "../../Footer/FooterComponent";
+import HeaderComponent from "../../components/Header";
+import NameCoin from "./NameCoin";
+import BuyCoin from "./BuyCoin";
+import InfoTable from "./InfoTable";
+import Diagram from "./Diagram";
+import FooterComponent from "../../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { removeInfoCoin } from "../../../redux/slice/infoCoinSlice";
+import { removeInfoCoin } from "../../redux/slice/infoCoinSlice";
 
 const InfoCoin = () => {
     const navigate = useNavigate();

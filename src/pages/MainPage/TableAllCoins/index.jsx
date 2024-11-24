@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styles from './tableAllCoins.module.css';
+import styles from './index.module.css';
 import numeral from "numeral";
 import { Box, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from '@mui/icons-material/Add';
-import { fetchGetMoreInfo } from "../../../../redux/slice/infoCoinSlice";
-import { fetchGetStatistic } from "../../../../redux/slice/diagramSlice";
+import { fetchGetMoreInfo } from "../../../redux/slice/infoCoinSlice";
+import { fetchGetStatistic } from "../../../redux/slice/diagramSlice";
 
 const TableAllCoins = () => {
     const { data } = useSelector(state => state.list);
@@ -24,7 +24,7 @@ const TableAllCoins = () => {
             cellClassName: `${styles.nameStyle}`,
             renderCell: (params) => (
                 <div
-                    onClick={() => getMoreInfo(params.row.id)} 
+                    onClick={() => getMoreInfo(params.row.id)}
                     style={{
                         cursor: 'pointer',
                         padding: 0,
@@ -114,40 +114,38 @@ const TableAllCoins = () => {
     }
 
     return (
-        <>
-            <Box sx={{ mt: 3, border: 0, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                <Paper sx={{
-                    height: '90%', width: '100%', boxShadow: 'none',
+        <Box sx={{ mt: 3, border: 0, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+            <Paper sx={{
+                height: '90%', width: '100%', boxShadow: 'none',
 
-                }}>
-                    <DataGrid
-                        rows={data}
-                        columns={columns}
-                        initialState={{ pagination: { paginationModel } }}
-                        pageSizeOptions={[10, 20]}
-                        checkboxSelection={false}
-                        sx={
-                            {
-                                border: 1,
-                                borderColor: '#c92d82',
+            }}>
+                <DataGrid
+                    rows={data}
+                    columns={columns}
+                    initialState={{ pagination: { paginationModel } }}
+                    pageSizeOptions={[10, 20]}
+                    checkboxSelection={false}
+                    sx={
+                        {
+                            border: 1,
+                            borderColor: '#c92d82',
 
-                                '& .MuiDataGrid-columnHeaderTitle': {
-                                    fontWeight: 'bold', // Жирный шрифт
-                                    fontSize: '1rem',
-                                    '& .MuiTableCell-root': {
-                                        fontSize: {
-                                            xs: '12px', // Для текста в ячейках
-                                            sm: '14px',
-                                            md: '16px',
-                                        },
-                                    }
-                                },
-                            }
+                            '& .MuiDataGrid-columnHeaderTitle': {
+                                fontWeight: 'bold', // Жирный шрифт
+                                fontSize: '1rem',
+                                '& .MuiTableCell-root': {
+                                    fontSize: {
+                                        xs: '12px', // Для текста в ячейках
+                                        sm: '14px',
+                                        md: '16px',
+                                    },
+                                }
+                            },
                         }
-                    />
-                </Paper>
-            </Box>
-        </>
+                    }
+                />
+            </Paper>
+        </Box>
     )
 }
 export default TableAllCoins;

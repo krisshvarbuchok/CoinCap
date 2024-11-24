@@ -1,6 +1,6 @@
-import FooterComponent from "../../Footer/FooterComponent";
-import HeaderComponent from "../../Header/HeaderComponent";
-import TableAllCoins from "./TableAllCoins/TableAllCoins";
+import FooterComponent from "../../components/Footer";
+import HeaderComponent from "../../components/Header";
+import TableAllCoins from "./TableAllCoins";
 
 const MainPage = () => {
 

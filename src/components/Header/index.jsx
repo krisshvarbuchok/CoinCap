@@ -1,6 +1,6 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
-import Briefcase from "./Briefcase/Briefcase";
-import PopularCrypto from "./PopularCrypto/PopularCrypto";
+import Briefcase from "./Briefcase";
+import PopularCrypto from "./PopularCrypto";
 
 const HeaderComponent = () => {
 

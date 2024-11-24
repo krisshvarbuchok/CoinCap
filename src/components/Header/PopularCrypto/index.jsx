@@ -6,7 +6,6 @@ const PopularCrypto = () => {
     // console.log(popular);
 
     return (
-
         <Box >
             <Typography variant="subtitle1" component="div"
                 sx={{
@@ -60,50 +59,61 @@ const PopularCrypto = () => {
                     <Box sx={{
                         display: 'flex', flexDirection: 'row', gap: 2
                     }}>
-                        <Stack sx={{  width: 50 }} >
-                            <Skeleton  sx={{ fontSize: {
+                        <Stack sx={{ width: 50 }} >
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '12px', // для маленьких экранов
                                     sm: '14px', // для средних экранов
                                     md: '16px', // для больших экранов
-                                }}}/>
-                            <Skeleton sx={{ fontSize: {
+                                }
+                            }} />
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '10px', // для маленьких экранов
                                     sm: '12px', // для средних экранов
                                     md: '14px', // для больших экранов
-                                }}}/>
+                                }
+                            }} />
                         </Stack>
-                        <Stack sx={{  width: 50 }} >
-                            <Skeleton  sx={{ fontSize: {
+                        <Stack sx={{ width: 50 }} >
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '12px', // для маленьких экранов
                                     sm: '14px', // для средних экранов
                                     md: '16px', // для больших экранов
-                                }}}/>
-                            <Skeleton sx={{ fontSize: {
+                                }
+                            }} />
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '10px', // для маленьких экранов
                                     sm: '12px', // для средних экранов
                                     md: '14px', // для больших экранов
-                                }}}/>
+                                }
+                            }} />
                         </Stack>
-                        <Stack sx={{  width: 50 }} >
-                            <Skeleton  sx={{ fontSize: {
+                        <Stack sx={{ width: 50 }} >
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '12px', // для маленьких экранов
                                     sm: '14px', // для средних экранов
                                     md: '16px', // для больших экранов
-                                }}}/>
-                            <Skeleton sx={{ fontSize: {
+                                }
+                            }} />
+                            <Skeleton sx={{
+                                fontSize: {
                                     xs: '10px', // для маленьких экранов
                                     sm: '12px', // для средних экранов
                                     md: '14px', // для больших экранов
-                                }}}/>
+                                }
+                            }} />
                         </Stack>
-              
-                    
-                      
+
+
+
                     </Box>
                 }
             </Box>
         </Box>
-
     )
 }
 export default PopularCrypto;
