@@ -13,6 +13,7 @@ const fetchGetMoreInfo = createAsyncThunk('info/fetchGetMoreInfo', async (id) =>
 })
 
 
+
 const infoCoinSlice = createSlice({
     name: 'infoCoin',
     initialState: {

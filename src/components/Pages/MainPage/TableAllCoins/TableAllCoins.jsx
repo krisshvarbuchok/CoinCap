@@ -6,6 +6,7 @@ import { Box, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from '@mui/icons-material/Add';
 import { fetchGetMoreInfo } from "../../../../redux/slice/infoCoinSlice";
+import { fetchGetStatistic } from "../../../../redux/slice/diagramSlice";
 
 const TableAllCoins = () => {
     //const navigate = useNavigate();
@@ -110,7 +111,8 @@ const TableAllCoins = () => {
     const getMoreInfo = (id) => {
         console.log('info', id);
         dispatch(fetchGetMoreInfo(id));
-        navigate('/infoCoin')
+        dispatch(fetchGetStatistic(id));
+        navigate('/infoCoin');
         //setAboutCoin(id)
         //setOpen(true)
 
