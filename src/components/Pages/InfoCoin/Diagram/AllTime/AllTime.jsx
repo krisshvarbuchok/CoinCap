@@ -1,37 +1,73 @@
+import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { startOfMonth, subMonths, endOfToday, isWithinInterval } from 'date-fns';
+
 
 const AllTime = () => {
     const { statistic } = useSelector(state => state.diagram);
     const { coin } = useSelector(state => state.coin);
     console.log(statistic);
+    const time = useSelector(state => state.time);
 
+
+    const startOfLastMonth = startOfMonth(subMonths(new Date(), 1)); // первое число прошлого месяца
+    const end = endOfToday(); // сегодняшний день
 
     return (
-        <ResponsiveContainer width="80%" height={400}>
-            <LineChart data={statistic} margin={{ top: 50, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-                <XAxis
-                    dataKey="date"
-                    tickFormatter={(date) => {
-                        const [month, day] = date.split(" "); // Предполагается формат "Nov 1, 2023"
-                        return day === "1" ? month : ""; // Показывать метку только для первого числа месяца
-                    }}
-                />
-                <YAxis
-                    // label={{ value: "Price (USD)", angle: -90, position: "insideLeft" }}
-                    tickFormatter={value => `$${value}`}
-                />
-                <Tooltip formatter={(value, name) => [`$${value}`, "Price"]} />
-                <Legend />
-                <Line type="monotone" dataKey="price" name={`${coin.name} Price`} stroke="#c92d82"
-                    dot={false}  // Убирает точки на графике
-                    activeDot={{ r: 8 }} />
-                <text x={320} y={20} textAnchor="middle" dominantBaseline="middle" fontSize={18}>
-                    {coin.name} Price Over Time
-                </text>
-            </LineChart>
-        </ResponsiveContainer>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center', // Центрируем по горизонтали
+            paddingRight: '20px'
+        }}>
+            <ResponsiveContainer width="95%" aspect={2} >
+                <LineChart
+                    data={time ?
+                        statistic :
+                        statistic.filter(item =>
+                            isWithinInterval(new Date(item.date), { start: startOfLastMonth, end: end })
+                        )
+                    }
+                    margin={{ top: 50, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
+                    <XAxis
+                        dataKey="date"
+                        // domain={['auto', 'auto']}
+                        tickFormatter={(date) => {
+                            const [month, day] = date.split(" "); // Предполагается формат "Nov 1, 2023"
+                            return day === "1" ? month : ""; // Показывать метку только для первого числа месяца
+                        }}
+                    />
+                    <YAxis
+                        tickFormatter={value => `$${value}`}
+                        domain={[0, 'auto']}
+                        allowDataOverflow={true}
+                        tick={{
+                            fontSize: 'clamp(10px, 1.5vw, 14px)', // Адаптивный размер шрифта
+                        }}
+                    />
+                    <Tooltip formatter={(value, name) => [`$${value}`, "Price"]}
+                        contentStyle={{ fontSize: 'clamp(12px, 1.5vw, 16px)' }}
+                    />
+                    <Legend
+                        wrapperStyle={{
+                            fontSize: 'clamp(10px, 1.5vw, 14px)', // Адаптивный размер легенды
+                        }}
+                    />
+                    <Line type="monotone" dataKey="price" name={`${coin.name} Price`} stroke="#c92d82"
+                        dot={false}  // Убирает точки на графике
+                        activeDot={{ r: 8 }} />
+                    <text x="50%"
+                        y="20"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{ fontSize: 'clamp(12px, 2vw, 18px)' }}>
+                        {time ? `${coin.name} Price Over Time` : `${coin.name} Price Last And Current Months`}
+                    </text>
+                </LineChart>
+            </ResponsiveContainer>
+        </Box>
+
     )
 }
 export default AllTime;

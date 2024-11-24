@@ -8,7 +8,7 @@ const fetchGetStatistic = createAsyncThunk('statistic/fetchGetStatistic', async 
         
         const dateAndPrice = result.data.map(item => ({
             date: new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
-            price: parseFloat(item.priceUsd).toFixed(2),
+            price: +parseFloat(item.priceUsd).toFixed(2),
             time: item.time,
         }))
         //console.log(dateAndPrice);
@@ -31,7 +31,11 @@ const diagramSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
+            .addCase(fetchGetStatistic.pending, (state, action) => {
+                state.status = 'loading';
+            })
             .addCase(fetchGetStatistic.fulfilled, (state, action) => {
+                state.status = 'successed';
                 state.statistic = action.payload;
             })
     }

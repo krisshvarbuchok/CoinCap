@@ -7,7 +7,7 @@ const InfoTable = () => {
 
     return (
         <>
-            <TableContainer component={Paper} sx={{ width: '70%', margin: 'auto', }}>
+            <TableContainer component={Paper} sx={{ width: '90%', margin: 'auto', }}>
                 <Table sx={{
                     width: '100%',
                     '& .MuiTableCell-root': {

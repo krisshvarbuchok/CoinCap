@@ -9,7 +9,6 @@ import { fetchGetMoreInfo } from "../../../../redux/slice/infoCoinSlice";
 import { fetchGetStatistic } from "../../../../redux/slice/diagramSlice";
 
 const TableAllCoins = () => {
-    //const navigate = useNavigate();
     const { data } = useSelector(state => state.list);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,16 +24,15 @@ const TableAllCoins = () => {
             cellClassName: `${styles.nameStyle}`,
             renderCell: (params) => (
                 <div
-                    onClick={() => getMoreInfo(params.row.id)} // Trigger event with the row id
+                    onClick={() => getMoreInfo(params.row.id)} 
                     style={{
                         cursor: 'pointer',
                         padding: 0,
                         margin: 0,
 
-                    }} // Optional, for indicating clickable
+                    }}
                 >
                     {params.value}
-
                 </div>
             ),
         },
@@ -106,26 +104,22 @@ const TableAllCoins = () => {
 
     const handleAddClick = (id) => {
         console.log('click', id);
-        
+
     }
     const getMoreInfo = (id) => {
         console.log('info', id);
         dispatch(fetchGetMoreInfo(id));
         dispatch(fetchGetStatistic(id));
         navigate('/infoCoin');
-        //setAboutCoin(id)
-        //setOpen(true)
-
     }
-
-    // const handleOpenCoin = () =>{
-    //     navigate('/infoCoin')
-    // }
 
     return (
         <>
             <Box sx={{ mt: 3, border: 0, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                <Paper sx={{ height: '100%', width: '70%', boxShadow: 'none', }}>
+                <Paper sx={{
+                    height: '90%', width: '100%', boxShadow: 'none',
+
+                }}>
                     <DataGrid
                         rows={data}
                         columns={columns}
@@ -140,6 +134,13 @@ const TableAllCoins = () => {
                                 '& .MuiDataGrid-columnHeaderTitle': {
                                     fontWeight: 'bold', // Жирный шрифт
                                     fontSize: '1rem',
+                                    '& .MuiTableCell-root': {
+                                        fontSize: {
+                                            xs: '12px', // Для текста в ячейках
+                                            sm: '14px',
+                                            md: '16px',
+                                        },
+                                    }
                                 },
                             }
                         }

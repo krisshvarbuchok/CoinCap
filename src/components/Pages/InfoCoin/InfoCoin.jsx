@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import {useEffect} from "react";
 import HeaderComponent from "../../Header/HeaderComponent";
 import NameCoin from "./NameCoin/NameCoin";
 import BuyCoin from "./BuyCoin/BuyCoin";
@@ -10,16 +11,21 @@ import { removeInfoCoin } from "../../../redux/slice/infoCoinSlice";
 
 const InfoCoin = () => {
     const navigate = useNavigate();
-    const {coin} = useSelector(state => state.coin);
+    const {coin, status} = useSelector(state => state.coin);
     const dispatch = useDispatch();
     console.log(coin);
+    useEffect(() => {
+        if(status !== 'loading' && Object.keys(coin).length === 0){
+            navigate('/')
+        }
+    }, [coin])
     
     const handleComeBack = () => {
         navigate('/');
         dispatch(removeInfoCoin());
     }
     return (
-        <>
+        <div className="container">
             <HeaderComponent />
             <NameCoin />
             <BuyCoin />
@@ -27,7 +33,7 @@ const InfoCoin = () => {
             <Diagram />
             <button onClick={() => handleComeBack()}>come back</button>
             <FooterComponent />
-        </>
+        </div>
     )
 }
 export default InfoCoin;

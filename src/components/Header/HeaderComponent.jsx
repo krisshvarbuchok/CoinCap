@@ -8,7 +8,7 @@ const HeaderComponent = () => {
 
         <Box sx={{ width: '100%' }}>
             <AppBar position='static' sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
-                <Toolbar sx={{ width: '60%', height: 100, m: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Toolbar sx={{ width: '80%', height: 100, m: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <PopularCrypto />
                     <Briefcase />
                 </Toolbar>

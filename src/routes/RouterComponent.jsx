@@ -5,12 +5,10 @@ import InfoCoin from "../components/Pages/InfoCoin/InfoCoin";
 const RouterComponent = () => {
 
     return (
-        <>
-            <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='/infoCoin' element={<InfoCoin />} />
-            </Routes>
-        </>
+        <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/infoCoin' element={<InfoCoin />} />
+        </Routes>
     )
 }
 export default RouterComponent;
