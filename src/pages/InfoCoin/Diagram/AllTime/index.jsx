@@ -62,7 +62,7 @@ const AllTime = () => {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         style={{ fontSize: 'clamp(12px, 2vw, 18px)' }}>
-                        {time ? `${coin.name} Price Over Time` : `${coin.name} Price Last And Current Months`}
+                        {time ? `${coin.name} цена за всё время` : `${coin.name} цена за прошедший и текущий месяцы`}
                     </text>
                 </LineChart>
             </ResponsiveContainer>

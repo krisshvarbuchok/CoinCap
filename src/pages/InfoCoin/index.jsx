@@ -6,24 +6,20 @@ import BuyCoin from "./BuyCoin";
 import InfoTable from "./InfoTable";
 import Diagram from "./Diagram";
 import FooterComponent from "../../components/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { removeInfoCoin } from "../../redux/slice/infoCoinSlice";
+import { useSelector } from "react-redux";
+import ComeBack from "./ComeBack";
 
 const InfoCoin = () => {
     const navigate = useNavigate();
     const {coin, status} = useSelector(state => state.coin);
-    const dispatch = useDispatch();
-    console.log(coin);
+   
+   
     useEffect(() => {
         if(status !== 'loading' && Object.keys(coin).length === 0){
             navigate('/')
         }
     }, [coin])
     
-    const handleComeBack = () => {
-        navigate('/');
-        dispatch(removeInfoCoin());
-    }
     return (
         <div className="container">
             <HeaderComponent />
@@ -31,7 +27,7 @@ const InfoCoin = () => {
             <BuyCoin />
             <InfoTable />
             <Diagram />
-            <button onClick={() => handleComeBack()}>come back</button>
+            <ComeBack />
             <FooterComponent />
         </div>
     )
