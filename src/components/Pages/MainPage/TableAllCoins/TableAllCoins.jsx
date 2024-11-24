@@ -1,14 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from './tableAllCoins.module.css';
 import numeral from "numeral";
 import { Box, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from '@mui/icons-material/Add';
+import { fetchGetMoreInfo } from "../../../../redux/slice/infoCoinSlice";
 
 const TableAllCoins = () => {
     //const navigate = useNavigate();
     const { data } = useSelector(state => state.list);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const columns = [
         { field: 'rank', headerName: '№', width: 50, sortable: false, disableColumnMenu: true, description: 'Rank is in ascending order - this number is directly associated with the marketcap whereas the highest marketcap receives rank 1.' },
@@ -95,17 +98,19 @@ const TableAllCoins = () => {
             sortable: false,
             align: 'center',
             disableColumnMenu: true, // This will disable the column menu
-            renderCell: (params) => <AddIcon onClick={() => handleAddClick(params.row.id)} style={{ color: '#c92d82', cursor: 'pointer' }} />,
+            renderCell: (params) => <AddIcon onClick={() => handleAddClick(params.row.id)} style={{ color: '#c92d82', cursor: 'pointer', paddingTop: '10px' }} />,
         },
     ];
     const paginationModel = { page: 0, pageSize: 10 };
 
     const handleAddClick = (id) => {
         console.log('click', id);
-
+        
     }
     const getMoreInfo = (id) => {
         console.log('info', id);
+        dispatch(fetchGetMoreInfo(id));
+        navigate('/infoCoin')
         //setAboutCoin(id)
         //setOpen(true)
 

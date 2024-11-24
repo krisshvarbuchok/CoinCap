@@ -5,11 +5,18 @@ import BuyCoin from "./BuyCoin/BuyCoin";
 import InfoTable from "./InfoTable/InfoTable";
 import Diagram from "./Diagram/Diagram";
 import FooterComponent from "../../Footer/FooterComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { removeInfoCoin } from "../../../redux/slice/infoCoinSlice";
 
 const InfoCoin = () => {
     const navigate = useNavigate();
+    const {coin} = useSelector(state => state.coin);
+    const dispatch = useDispatch();
+    console.log(coin);
+    
     const handleComeBack = () => {
-        navigate('/')
+        navigate('/');
+        dispatch(removeInfoCoin());
     }
     return (
         <>
