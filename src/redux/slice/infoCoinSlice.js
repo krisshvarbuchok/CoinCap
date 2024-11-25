@@ -4,7 +4,7 @@ const fetchGetMoreInfo = createAsyncThunk('info/fetchGetMoreInfo', async (id) =>
     try {
         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v2/assets/${id}`);
         const result = await response.json();
-        console.log(result.data);
+        console.log('infocoin', result.data);
         return result.data;
     }
     catch(err){

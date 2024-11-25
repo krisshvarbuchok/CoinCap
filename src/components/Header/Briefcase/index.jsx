@@ -1,7 +1,9 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import { useSelector } from "react-redux";
 
 const Briefcase = () => {
+    const {sum} = useSelector(state => state.sum );
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -49,7 +51,7 @@ const Briefcase = () => {
                         sm: '14px', // для средних экранов
                         md: '16px', // для больших экранов
                     },
-                }}>sum</Typography>
+                }}>{sum.toFixed(2)}$</Typography>
             </Box>
         </Box>
     )

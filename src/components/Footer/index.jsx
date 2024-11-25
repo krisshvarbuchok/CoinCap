@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 const FooterComponent = () =>{
 
@@ -10,12 +10,15 @@ const FooterComponent = () =>{
             justifyContent: 'center',
         }}>
             <Typography sx={{
+                marginTop: '10px',
                  fontSize: {
                     xs: '10px', // для маленьких экранов
                     sm: '12px', // для средних экранов
                     md: '14px', // для больших экранов
                 },
-                }}>Сделано с помощью API Coincap </Typography>
+                }}>Сделано с помощью <Link href="https://docs.coincap.io/" underline="none" sx={{color: '#6b1562'}}>
+               API Coincap
+              </Link> </Typography>
         </Box>
     )
 }
