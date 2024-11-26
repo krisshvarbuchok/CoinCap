@@ -8,10 +8,12 @@ import Diagram from "./Diagram";
 import FooterComponent from "../../components/Footer";
 import { useSelector } from "react-redux";
 import ComeBack from "./ComeBack";
+import BriefcaseModal from "../../components/BriefcaseModal";
 
 const InfoCoin = () => {
     const navigate = useNavigate();
     const { coin, status } = useSelector(state => state.coin);
+    const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
 
   
     useEffect(() => {
@@ -23,6 +25,7 @@ const InfoCoin = () => {
     return (
         <div className="container">
             <HeaderComponent />
+            {isOpenBriefcase && <BriefcaseModal />}
             {status === 'loading' ? <div>...loading</div> :
                 <>
                     <NameCoin />

@@ -1,13 +1,21 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsOpenBriefcase } from "../../../redux/slice/isOpenBriefcaseModalSlice";
 
 const Briefcase = () => {
     const {sum} = useSelector(state => state.sum );
+    const dispatch = useDispatch();
+    //const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
 
+
+    const openBriefcase = () => {
+        dispatch(setIsOpenBriefcase(true));
+    }
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton
+            <IconButton 
+            onClick={openBriefcase}
                 size="large"
                 // edge="start"
                 // color="inherit"
@@ -24,7 +32,9 @@ const Briefcase = () => {
                         sm: 40, // для средних экранов
                         md: 70, // для больших экранов
                     }, '&:hover': { color: '#c92d82' }
-                }} />
+                }} 
+               
+                />
             </IconButton>
 
 

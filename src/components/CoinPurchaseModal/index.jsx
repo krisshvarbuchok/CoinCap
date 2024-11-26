@@ -4,7 +4,7 @@ import { setIsOpenCoinPurchase } from "../../redux/slice/isOpenCoinPurchaseModal
 import { removeBuy, setBuy } from "../../redux/slice/buyCoinSlice";
 import { addSum } from "../../redux/slice/sumCaseSlice";
 import CloseIcon from '@mui/icons-material/Close';
-import { removeInfoCoin } from "../../redux/slice/infoCoinSlice";
+import { addCoinInCase } from "../../redux/slice/coinInBriefcaseSlice";
 
 const CoinPurchaseModal = () => {
     const isOpenCoinPurchase = useSelector(state => state.isOpenCoinPurchase);
@@ -25,7 +25,8 @@ const CoinPurchaseModal = () => {
     }
     const handleClick = () => {
         if (typeof buy === 'number' && !isNaN(buy)) {
-            dispatch(addSum((+buy * parseFloat(coin.priceUsd))));
+            dispatch(addSum((+buy * parseFloat((+(coin.priceUsd)).toFixed(2)))));
+            dispatch(addCoinInCase({...coin, count: buy}));
             dispatch(removeBuy());
             dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
         }
@@ -33,7 +34,6 @@ const CoinPurchaseModal = () => {
 
 
     return (
-
         <Dialog open={isOpenCoinPurchase} onClose={closeModal} fullWidth maxWidth="sm"
             closeAfterTransition={false}
             sx={{
@@ -120,7 +120,6 @@ const CoinPurchaseModal = () => {
 
                     }}
                     onClick={handleClick}>Добавить</Button>
-                {/* <Button color="error" variant="contained" onClick={closeModal}>Close</Button> */}
             </DialogActions>
         </Dialog>
 

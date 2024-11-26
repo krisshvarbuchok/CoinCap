@@ -6,6 +6,7 @@ import { setBuy } from "../../../redux/slice/buyCoinSlice";
 const BuyCoin = () => {
     const dispatch = useDispatch();
     const buy = useSelector(state => state.buy);
+    
    // console.log('buy',typeof buy);
 
 

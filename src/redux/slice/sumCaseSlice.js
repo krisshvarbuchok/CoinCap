@@ -9,8 +9,11 @@ const sumCaseSlice = createSlice({
     reducers: {
         addSum: (state, action) => {
             state.sum = state.sum + action.payload;
+        },
+        deleteSum:(state, action) => {
+            state.sum = state.sum - action.payload;
         }
     }
 })
-export const {addSum} = sumCaseSlice.actions;
+export const {addSum, deleteSum} = sumCaseSlice.actions;
 export default sumCaseSlice.reducer;

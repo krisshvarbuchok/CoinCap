@@ -6,6 +6,8 @@ import timeForDiagramSlice from "./slice/timeForDiagramSlice";
 import buyCoinSlice from  "./slice/buyCoinSlice";
 import sumCaseSlice from "./slice/sumCaseSlice";
 import isOpenCoinPurchaseModalSlice from './slice/isOpenCoinPurchaseModalSlice';
+import isOpenBriefcaseModalSlice from "./slice/isOpenBriefcaseModalSlice";
+import coinInBriefcaseSlice from "./slice/coinInBriefcaseSlice";
 
 const store = configureStore({
     reducer:{
@@ -16,6 +18,8 @@ const store = configureStore({
         buy: buyCoinSlice,
         sum: sumCaseSlice,
         isOpenCoinPurchase: isOpenCoinPurchaseModalSlice,
+        isOpenBriefcase: isOpenBriefcaseModalSlice,
+        myBriefcase: coinInBriefcaseSlice,
     }
 })
 export default store;
