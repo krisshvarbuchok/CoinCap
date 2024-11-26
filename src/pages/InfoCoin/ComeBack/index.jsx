@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import { removeInfoCoin } from "../../../redux/slice/infoCoinSlice";
+import { removeInfoCoinFromComeBack } from "../../../redux/slice/infoCoinSlice";
 import { removeBuy } from "../../../redux/slice/buyCoinSlice";
+
 
 const ComeBack = () => {
     const dispatch = useDispatch();
@@ -11,9 +12,11 @@ const ComeBack = () => {
 
     const handleComeBack = () => {
         navigate('/');
-        dispatch(removeInfoCoin());
+        //dispatch(removeInfoCoin());
+        dispatch(removeInfoCoinFromComeBack());
         dispatch(removeBuy());
     }
+
 
     return (
         <Button variant="outlined"

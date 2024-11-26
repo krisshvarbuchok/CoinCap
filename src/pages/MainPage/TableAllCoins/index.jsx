@@ -2,16 +2,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from './index.module.css';
 import numeral from "numeral";
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Skeleton } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from '@mui/icons-material/Add';
-import { fetchGetMoreInfo } from "../../../redux/slice/infoCoinSlice";
+import { fetchGetMoreInfo, setIsComeBackFalse } from "../../../redux/slice/infoCoinSlice";
 import { fetchGetStatistic } from "../../../redux/slice/diagramSlice";
+import { setIsOpenCoinPurchase } from "../../../redux/slice/isOpenCoinPurchaseModalSlice";
+import CoinPurchaseModal from "../../../components/CoinPurchaseModal";
+import { useEffect, useState } from "react";
+
+
+
 
 const TableAllCoins = () => {
-    const { data } = useSelector(state => state.list);
+    const { data, statusData } = useSelector(state => state.list);
+    console.log(statusData);
+    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState([]);
+    console.log('loading', loading);
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { status, isComeBack } = useSelector(state => state.coin);
+
+    const isOpenCoinPurchase = useSelector(state => state.isOpenCoinPurchase);
+    //console.log(isOpenCoinPurchase);
+    // const LoadingSkeleton = () => (
+    //     <Box sx={{ width: '100%' }}>
+    //         {[...Array(10)].map((_, index) => (
+    //             <Skeleton key={index} variant="rectangular" sx={{ my: 4, mx: 1 }} />
+    //         ))}
+    //     </Box>
+    // );
+
 
     const columns = [
         { field: 'rank', headerName: '№', width: 50, sortable: false, disableColumnMenu: true, description: 'Rank is in ascending order - this number is directly associated with the marketcap whereas the highest marketcap receives rank 1.' },
@@ -103,11 +127,32 @@ const TableAllCoins = () => {
     const paginationModel = { page: 0, pageSize: 10 };
 
     const handleAddClick = (id) => {
+        dispatch(setIsComeBackFalse())
+        dispatch(fetchGetMoreInfo(id));
         console.log('click', id);
-
+        // if (status === 'successed') {
+        //     console.log('click', id);
+        //     dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
+        // }
     }
+    useEffect(() => {
+        if (status === 'successed' && isComeBack === false) {
+            dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
+        }
+    }, [status])
+
+    useEffect(() => {
+        if (statusData === 'loading') {
+            setLoading(true);
+
+        } else {
+            setLoading(false);
+            setPosts(data)
+        }
+    }, [statusData, data]);
+
     const getMoreInfo = (id) => {
-        console.log('info', id);
+        //console.log('info', id);
         dispatch(fetchGetMoreInfo(id));
         dispatch(fetchGetStatistic(id));
         navigate('/infoCoin');
@@ -115,34 +160,34 @@ const TableAllCoins = () => {
 
     return (
         <Box sx={{ mt: 3, border: 0, display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+            <CoinPurchaseModal />
             <Paper sx={{
-                height: '90%', width: '100%', boxShadow: 'none',
+                height: '100%', width: '100%', boxShadow: 'none',
 
             }}>
                 <DataGrid
-                    rows={data}
+                    rows={posts} // Передаем пустые строки во время загрузки
                     columns={columns}
                     initialState={{ pagination: { paginationModel } }}
                     pageSizeOptions={[10, 20]}
+                    // rowsPerPageOptionsSkeleton
+                    // disableSelectionOnClick
+                    // disableColumnMenu
+                    //disableColumnSelector
+                    // components={{
+                    //     LoadingOverlay: LoadingSkeleton
+                    // }}
+                    loading={loading}
                     checkboxSelection={false}
-                    sx={
-                        {
-                            border: 1,
-                            borderColor: '#c92d82',
-
-                            '& .MuiDataGrid-columnHeaderTitle': {
-                                fontWeight: 'bold', // Жирный шрифт
-                                fontSize: '1rem',
-                                '& .MuiTableCell-root': {
-                                    fontSize: {
-                                        xs: '12px', // Для текста в ячейках
-                                        sm: '14px',
-                                        md: '16px',
-                                    },
-                                }
-                            },
-                        }
-                    }
+                    sx={{
+                        border: 1,
+                        minHeight: 600,
+                        borderColor: '#c92d82',
+                        '& .MuiDataGrid-columnHeaderTitle': {
+                            fontWeight: 'bold',
+                            fontSize: '1rem',
+                        },
+                    }}
                 />
             </Paper>
         </Box>

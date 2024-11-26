@@ -7,7 +7,7 @@ import { startOfMonth, subMonths, endOfToday, isWithinInterval } from 'date-fns'
 const AllTime = () => {
     const { statistic } = useSelector(state => state.diagram);
     const { coin } = useSelector(state => state.coin);
-    console.log(statistic);
+    //console.log(statistic);
     const time = useSelector(state => state.time);
 
 

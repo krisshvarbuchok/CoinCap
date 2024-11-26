@@ -5,6 +5,7 @@ import diagramSlice from "./slice/diagramSlice";
 import timeForDiagramSlice from "./slice/timeForDiagramSlice";
 import buyCoinSlice from  "./slice/buyCoinSlice";
 import sumCaseSlice from "./slice/sumCaseSlice";
+import isOpenCoinPurchaseModalSlice from './slice/isOpenCoinPurchaseModalSlice';
 
 const store = configureStore({
     reducer:{
@@ -14,6 +15,7 @@ const store = configureStore({
         time: timeForDiagramSlice,
         buy: buyCoinSlice,
         sum: sumCaseSlice,
+        isOpenCoinPurchase: isOpenCoinPurchaseModalSlice,
     }
 })
 export default store;

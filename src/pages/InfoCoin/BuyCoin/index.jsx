@@ -1,21 +1,18 @@
 import { Box, Input, Typography } from "@mui/material";
 import BuyButton from "./BuyButton";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setBuy } from "../../../redux/slice/buyCoinSlice";
 
 const BuyCoin = () => {
     const dispatch = useDispatch();
     const buy = useSelector(state => state.buy);
-    console.log('buy',typeof buy);
+   // console.log('buy',typeof buy);
 
-    const [count, setCount] = useState(buy)
 
     const handleChange = (e) => {
         const newValue = e.target.value;
         // Устанавливаем только если это цифры
         if (/^\d*$/.test(newValue)) {
-            setCount(newValue);
             dispatch(setBuy(+newValue));
         }
     }
@@ -36,7 +33,7 @@ const BuyCoin = () => {
                         textAlign: 'center', // Убедимся, что выравнивание применено
                     },
                 }}
-                value={count}
+                value={buy}
                 onChange={handleChange}
                 placeholder="Введите только цифры"
                 inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}

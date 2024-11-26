@@ -28,17 +28,17 @@ const listSlice = createSlice({
         data: [],
         info: [],
         popular: [],
-        status: null,
+        statusData: null,
         error: null,
     },
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(fetchGetСryptocurrency.pending, (state, action) => {
-                state.status = 'loding'
+                state.statusData = 'loading'
             })
             .addCase(fetchGetСryptocurrency.fulfilled, (state, action) => {
-                state.status = 'successed';
+                state.statusData = 'successed';
                 state.data = action.payload;
                 state.popular = action.payload.filter(item => item.rank === '1' || item.rank === '2' || item.rank === '3')
             })

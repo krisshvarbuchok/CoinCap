@@ -7,7 +7,7 @@ const fetchGetMoreInfo = createAsyncThunk('info/fetchGetMoreInfo', async (id) =>
         console.log('infocoin', result.data);
         return result.data;
     }
-    catch(err){
+    catch (err) {
         console.log(err.name, err.message)
     }
 })
@@ -19,10 +19,18 @@ const infoCoinSlice = createSlice({
     initialState: {
         coin: {},
         status: null,
+        isComeBack: false,
     },
     reducers: {
         removeInfoCoin: (state, action) => {
             state.coin = {};
+        },
+        removeInfoCoinFromComeBack: (state, action) => {
+            state.isComeBack = true;
+            //state.coin = {};
+        },
+        setIsComeBackFalse: (state, action) => {
+            state.isComeBack = false;
         }
     },
     extraReducers: builder => {
@@ -37,6 +45,6 @@ const infoCoinSlice = createSlice({
 
     }
 })
-export {fetchGetMoreInfo};
-export const {removeInfoCoin} = infoCoinSlice.actions;
+export { fetchGetMoreInfo };
+export const { removeInfoCoin, removeInfoCoinFromComeBack, setIsComeBackFalse } = infoCoinSlice.actions;
 export default infoCoinSlice.reducer;
