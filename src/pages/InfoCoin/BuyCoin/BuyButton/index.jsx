@@ -11,7 +11,7 @@ const BuyButton = () => {
 
     const handleClick = () => {
         if(typeof buy === 'number' && !isNaN(buy)){
-            dispatch(addSum((+buy * parseFloat(coin.priceUsd))));
+            dispatch(addSum((+buy * parseFloat((+(coin.priceUsd)).toFixed(2))).toFixed(2)));
             dispatch(addCoinInCase({...coin, count: buy}))
             dispatch(removeBuy());
         }

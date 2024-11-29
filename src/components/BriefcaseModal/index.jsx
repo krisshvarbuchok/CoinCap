@@ -97,10 +97,10 @@ const BriefcaseModal = () => {
                                 <TableCell align="center">{item.name}</TableCell>
                                 <TableCell align="center">{parseFloat(item.priceUsd).toFixed(2)} $</TableCell>
                                 <TableCell align="center">{item.count}</TableCell>
-                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>{(+item.count * +item.priceUsd).toFixed(2)} $</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>{(+item.count * parseFloat((+item.priceUsd).toFixed(2))).toFixed(2)} $</TableCell>
                                 <TableCell align="center">
                                     <IconButton
-                                        onClick={() => handleDelete(item.id, (+item.count * +item.priceUsd))}
+                                        onClick={() => handleDelete(item.id, (+item.count * parseFloat((+item.priceUsd).toFixed(2))))}
                                         color="error"
                                     >
                                         <CloseIcon />
