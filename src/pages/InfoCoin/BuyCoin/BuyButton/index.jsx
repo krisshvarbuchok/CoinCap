@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addSum } from "../../../../redux/slice/sumCaseSlice";
 import { removeBuy } from "../../../../redux/slice/buyCoinSlice";
+import toFixNumber from "../../../../utils/toFixNumber";
 import { addCoinInCase } from "../../../../redux/slice/coinInBriefcaseSlice";
 
 const BuyButton = () => {
@@ -11,8 +12,8 @@ const BuyButton = () => {
 
     const handleClick = () => {
         if(typeof buy === 'number' && !isNaN(buy)){
-            dispatch(addSum((+buy * parseFloat((+(coin.priceUsd)).toFixed(2))).toFixed(2)));
-            dispatch(addCoinInCase({...coin, count: buy}))
+            dispatch(addCoinInCase({...coin, count: buy}));
+            dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
             dispatch(removeBuy());
         }
     }

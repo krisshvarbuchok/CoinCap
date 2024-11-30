@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenBriefcase } from "../../../redux/slice/isOpenBriefcaseModalSlice";
 
 const Briefcase = () => {
-    const {sum} = useSelector(state => state.sum );
+    
     const dispatch = useDispatch();
+    const { sum } = useSelector(state => state.sum);
+    
+    
     //const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
 
 
@@ -61,7 +64,7 @@ const Briefcase = () => {
                         sm: '14px', // для средних экранов
                         md: '16px', // для больших экранов
                     },
-                }}>{sum.toFixed(2)}$</Typography>
+                }}>{sum}$</Typography>
             </Box>
         </Box>
     )

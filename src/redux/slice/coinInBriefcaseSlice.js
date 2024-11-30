@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import getCoinsFromCaseLocal from "../../localStorage/getCoinsFromCase";
+import updateCoinsInLocal from "../../localStorage/updateCoins";
 
 const coinInBriefcaseSlice = createSlice({
     name: 'coinInBriefcase',
     initialState: {
-        myCoins: [],
+        myCoins: [...getCoinsFromCaseLocal()],
     },
     reducers: {
         addCoinInCase: (state, action) => {
@@ -17,9 +19,11 @@ const coinInBriefcaseSlice = createSlice({
                     }
                 })
             }
+            updateCoinsInLocal(state.myCoins);
         },
         removeMyCoinCase: (state, action) => {
             state.myCoins = state.myCoins.filter(item => item.id !== action.payload);
+            updateCoinsInLocal(state.myCoins);
         }
     }
 })

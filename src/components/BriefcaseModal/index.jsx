@@ -3,25 +3,28 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenBriefcase } from "../../redux/slice/isOpenBriefcaseModalSlice";
 import Paper from '@mui/material/Paper';
-import { removeMyCoinCase } from "../../redux/slice/coinInBriefcaseSlice";
 import { deleteSum } from "../../redux/slice/sumCaseSlice";
+import toFixNumber from "../../utils/toFixNumber";
+import { removeMyCoinCase } from "../../redux/slice/coinInBriefcaseSlice";
 
 
 
 const BriefcaseModal = () => {
     const dispatch = useDispatch();
     const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
-    const { myCoins } = useSelector(state => state.myBriefcase);
-    console.log(myCoins);
+    const {myCoins} = useSelector(state => state.myBriefcase);
+    //console.log('myCoins', myCoins);
     const { sum } = useSelector(state => state.sum);
+    //console.log(sum);
+    
 
     const closeModal = () => {
         dispatch(setIsOpenBriefcase(false));
     }
     const handleDelete = (id, num) => {
-        console.log(id);
+        //console.log(id);
         dispatch(removeMyCoinCase(id));
-        dispatch(deleteSum(num))
+        dispatch(deleteSum(num));
     }
 
 
@@ -95,12 +98,12 @@ const BriefcaseModal = () => {
                         {myCoins.map(item => (
                             <TableRow key={item.id}>
                                 <TableCell align="center">{item.name}</TableCell>
-                                <TableCell align="center">{parseFloat(item.priceUsd).toFixed(2)} $</TableCell>
+                                <TableCell align="center">{toFixNumber(item.priceUsd)} $</TableCell>
                                 <TableCell align="center">{item.count}</TableCell>
-                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>{(+item.count * parseFloat((+item.priceUsd).toFixed(2))).toFixed(2)} $</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold' }}>{(+item.count * +toFixNumber(item.priceUsd)).toFixed(2)} $</TableCell>
                                 <TableCell align="center">
                                     <IconButton
-                                        onClick={() => handleDelete(item.id, (+item.count * parseFloat((+item.priceUsd).toFixed(2))))}
+                                        onClick={() => handleDelete(item.id, (+item.count * +toFixNumber(item.priceUsd)).toFixed(2))}
                                         color="error"
                                     >
                                         <CloseIcon />
@@ -118,7 +121,7 @@ const BriefcaseModal = () => {
                     mb: 2,
 
                 }}>
-                    Итого: <Typography component="span" sx={{ fontWeight: 'bold' }}>{sum.toFixed(2)} $</Typography>
+                    Итого: <Typography component="span" sx={{ fontWeight: 'bold' }}>{sum} $</Typography>
                 </Typography>
             </TableContainer>
         </Dialog>

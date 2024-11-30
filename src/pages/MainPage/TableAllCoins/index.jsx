@@ -10,16 +10,18 @@ import { fetchGetStatistic } from "../../../redux/slice/diagramSlice";
 import { setIsOpenCoinPurchase } from "../../../redux/slice/isOpenCoinPurchaseModalSlice";
 import CoinPurchaseModal from "../../../components/CoinPurchaseModal";
 import { useEffect, useState } from "react";
+import toFixNumber from "../../../utils/toFixNumber";
+import stylesFunction from "../../../utils/stylesFunction";
 
 
 
 
 const TableAllCoins = () => {
     const { data, statusData } = useSelector(state => state.list);
-    console.log(statusData);
+    //console.log(statusData);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
-    console.log('loading', loading);
+    //console.log('loading', loading);
 
 
     const dispatch = useDispatch();
@@ -66,24 +68,16 @@ const TableAllCoins = () => {
             description: 'Volume Weighted Average Price in the last 24 hours.',
             width: 170,
             align: 'center',
-            valueGetter: (value) => `${parseFloat(value).toFixed(2)} $`,
+            valueGetter: (value) => `${toFixNumber(value)} $`,
         },
         {
             field: 'changePercent24Hr',
             headerName: 'Change (24Hr)',
             description: 'The direction and value change in the last 24 hours.',
             width: 170,
-            cellClassName: (params) => {
-                if (parseFloat(params.value) > 0) {
-                    return `${styles.positiveChange}`;
-                } else if (parseFloat(params.value) < 0) {
-                    return `${styles.negativeChange}`;
-                } else {
-                    return `${styles.neutralChange}`;
-                }
-            },
+            cellClassName: (params) => stylesFunction(params.value),
             align: 'center',
-            valueGetter: (value) => `${parseFloat(value).toFixed(2)} $`,
+            valueGetter: (value) => `${toFixNumber(value)} $`,
         },
         {
             field: 'marketCapUsd',
@@ -112,7 +106,7 @@ const TableAllCoins = () => {
             align: 'center',
             description: 'Volume-weighted price based on real-time market data, translated to USD.',
             cellClassName: `${styles.priceStyle}`,
-            valueGetter: (value) => `${parseFloat(value).toFixed(2)} $`,
+            valueGetter: (value) => `${toFixNumber(value)} $`,
         },
         {
             field: 'addIcon',
@@ -129,7 +123,8 @@ const TableAllCoins = () => {
     const handleAddClick = (id) => {
         dispatch(setIsComeBackFalse())
         dispatch(fetchGetMoreInfo(id));
-        console.log('click', id);
+        //localStorage.clear()
+        //console.log('click', id);
         // if (status === 'successed') {
         //     console.log('click', id);
         //     dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));

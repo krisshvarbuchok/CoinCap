@@ -1,5 +1,6 @@
 import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
+import toFixNumber from "../../../utils/toFixNumber";
 
 const PopularCrypto = () => {
     const { popular } = useSelector(state => state.list);
@@ -53,7 +54,7 @@ const PopularCrypto = () => {
                                     sm: '14px', // для средних экранов
                                     md: '16px', // для больших экранов
                                 },
-                            }}>{`${parseFloat(item.priceUsd).toFixed(2)} $`}</Typography>
+                            }}>{`${toFixNumber(item.priceUsd)} $`}</Typography>
                         </Box>
                     ))) :
                     <Box sx={{

@@ -5,4 +5,20 @@
   min-width: 100px;
   margin: 0 auto;
 }
+.positiveChange {
+  color: green;
+}
+.positiveChange::before {
+  content: '+';
+  color: green;
+}
+
+.negativeChange {
+  color: red;
+}
+
+
+.neutralChange {
+  color: gray;
+}
 

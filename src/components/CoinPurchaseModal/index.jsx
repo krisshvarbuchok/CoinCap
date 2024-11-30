@@ -4,6 +4,7 @@ import { setIsOpenCoinPurchase } from "../../redux/slice/isOpenCoinPurchaseModal
 import { removeBuy, setBuy } from "../../redux/slice/buyCoinSlice";
 import { addSum } from "../../redux/slice/sumCaseSlice";
 import CloseIcon from '@mui/icons-material/Close';
+import toFixNumber from "../../utils/toFixNumber";
 import { addCoinInCase } from "../../redux/slice/coinInBriefcaseSlice";
 
 const CoinPurchaseModal = () => {
@@ -13,7 +14,6 @@ const CoinPurchaseModal = () => {
     const buy = useSelector(state => state.buy);
     const closeModal = () => {
         dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
-        // dispatch(removeInfoCoin());
         dispatch(removeBuy());
     }
     const handleChange = (e) => {
@@ -25,8 +25,8 @@ const CoinPurchaseModal = () => {
     }
     const handleClick = () => {
         if (typeof buy === 'number' && !isNaN(buy)) {
-            dispatch(addSum((+buy * parseFloat((+(coin.priceUsd)).toFixed(2)))));
             dispatch(addCoinInCase({...coin, count: buy}));
+            dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
             dispatch(removeBuy());
             dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
         }
@@ -117,7 +117,6 @@ const CoinPurchaseModal = () => {
                             sm: '14px', // для средних экранов
                             md: '16px', // для больших экранов
                         },
-
                     }}
                     onClick={handleClick}>Добавить</Button>
             </DialogActions>
