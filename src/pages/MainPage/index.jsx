@@ -6,15 +6,15 @@ import BriefcaseModal from "../../components/BriefcaseModal";
 import { selectIsOpenBriefcase } from "../../redux/selectors";
 
 const MainPage = () => {
-    const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
+  const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
 
-    return (
-        <div className="container">
-                <HeaderComponent />
-                {isOpenBriefcase && <BriefcaseModal />}
-                <TableAllCoins />
-                <FooterComponent />
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <HeaderComponent />
+      {isOpenBriefcase && <BriefcaseModal />}
+      <TableAllCoins />
+      <FooterComponent />
+    </div>
+  );
+};
 export default MainPage;

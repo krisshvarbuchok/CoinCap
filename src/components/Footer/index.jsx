@@ -12,9 +12,9 @@ const FooterComponent = () =>{
             <Typography sx={{
                 marginTop: '10px',
                  fontSize: {
-                    xs: '10px', // для маленьких экранов
-                    sm: '12px', // для средних экранов
-                    md: '14px', // для больших экранов
+                    xs: '10px',
+                    sm: '12px', 
+                    md: '14px', 
                 },
                 }}>Сделано с помощью <Link href="https://docs.coincap.io/" underline="none" sx={{color: '#6b1562'}}>
                API Coincap

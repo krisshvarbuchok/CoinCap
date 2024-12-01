@@ -4,24 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTime } from "../../../redux/slice/timeForDiagramSlice";
 import { selectTime } from "../../../redux/selectors";
 
-
 const Diagram = () => {
-    const dispatch = useDispatch();
-    const time = useSelector(selectTime);
+  const dispatch = useDispatch();
+  const time = useSelector(selectTime);
 
-
-
-    return (
-        <>
-            <Button sx={{ color: "#c92d82", display:'flex', margin: 'auto', marginTop:'20px', marginBottom: '20px',
-                fontSize: {
-                    xs: '12px', // для маленьких экранов
-                    sm: '14px', // для средних экранов
-                    md: '16px', // для больших экранов
-                },
-             }} onClick={() => dispatch(setTime(!time))}>Открыть {!time ? 'За всё время' : 'Предыдущий и текущий месяцы'}</Button>
-            <AllTime />
-        </>
-    )
-}
+  return (
+    <>
+      <Button
+        sx={{
+          color: "#c92d82",
+          display: "flex",
+          margin: "auto",
+          marginTop: "20px",
+          marginBottom: "20px",
+          fontSize: {
+            xs: "12px",
+            sm: "14px",
+            md: "16px",
+          },
+        }}
+        onClick={() => dispatch(setTime(!time))}
+      >
+        Открыть {!time ? "За всё время" : "Предыдущий и текущий месяцы"}
+      </Button>
+      <AllTime />
+    </>
+  );
+};
 export default Diagram;

@@ -7,37 +7,38 @@ import { addCoinInCase } from "../../../../redux/slice/coinInBriefcaseSlice";
 import { selectBuy, selectCoin } from "../../../../redux/selectors";
 
 const BuyButton = () => {
-    const dispatch = useDispatch();
-    const buy = useSelector(selectBuy);
-    const {coin} = useSelector(selectCoin);
+  const dispatch = useDispatch();
+  const buy = useSelector(selectBuy);
+  const { coin } = useSelector(selectCoin);
 
-    const handleClick = () => {
-        if(typeof buy === 'number' && !isNaN(buy)){
-            dispatch(addCoinInCase({...coin, count: buy}));
-            dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
-            dispatch(removeBuy());
-        }
+  const handleClick = () => {
+    if (typeof buy === "number" && !isNaN(buy)) {
+      dispatch(addCoinInCase({ ...coin, count: buy }));
+      dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
+      dispatch(removeBuy());
     }
+  };
 
-    return (
-        <Button
-            variant="outlined"
-            color="secondary"
-            sx={{
-                color: '#c92d82',
-                borderColor: '#c92d82',
-                marginLeft: '20px',
-                marginTop: '20px',
-                marginBottom: '20px',
-                fontSize: {
-                    xs: '12px', // для маленьких экранов
-                    sm: '14px', // для средних экранов
-                    md: '16px', // для больших экранов
-                },
-
-            }}
-            onClick={handleClick}
-        >Купить</Button>
-    )
-}
+  return (
+    <Button
+      variant="outlined"
+      color="secondary"
+      sx={{
+        color: "#c92d82",
+        borderColor: "#c92d82",
+        marginLeft: "20px",
+        marginTop: "20px",
+        marginBottom: "20px",
+        fontSize: {
+          xs: "12px",
+          sm: "14px",
+          md: "16px",
+        },
+      }}
+      onClick={handleClick}
+    >
+      Купить
+    </Button>
+  );
+};
 export default BuyButton;

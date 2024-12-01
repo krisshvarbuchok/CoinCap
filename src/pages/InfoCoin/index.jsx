@@ -12,32 +12,33 @@ import BriefcaseModal from "../../components/BriefcaseModal";
 import { selectCoin, selectIsOpenBriefcase } from "../../redux/selectors";
 
 const InfoCoin = () => {
-    const navigate = useNavigate();
-    const { coin, status } = useSelector(selectCoin);
-    const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
+  const navigate = useNavigate();
+  const { coin, status } = useSelector(selectCoin);
+  const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
 
-  
-    useEffect(() => {
-        if (status !== 'loading' && Object.keys(coin).length === 0) {
-            navigate('/')
-        }
-    }, [coin])
+  useEffect(() => {
+    if (status !== "loading" && Object.keys(coin).length === 0) {
+      navigate("/");
+    }
+  }, [coin]);
 
-    return (
-        <div className="container">
-            <HeaderComponent />
-            {isOpenBriefcase && <BriefcaseModal />}
-            {status === 'loading' ? <div>...loading</div> :
-                <>
-                    <NameCoin />
-                    <BuyCoin />
-                    <InfoTable />
-                    <Diagram />
-                    <ComeBack />
-                    <FooterComponent />
-                </>
-            }
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <HeaderComponent />
+      {isOpenBriefcase && <BriefcaseModal />}
+      {status === "loading" ? (
+        <div>...loading</div>
+      ) : (
+        <>
+          <NameCoin />
+          <BuyCoin />
+          <InfoTable />
+          <Diagram />
+          <ComeBack />
+          <FooterComponent />
+        </>
+      )}
+    </div>
+  );
+};
 export default InfoCoin;

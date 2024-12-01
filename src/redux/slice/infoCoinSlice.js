@@ -27,7 +27,6 @@ const infoCoinSlice = createSlice({
         },
         removeInfoCoinFromComeBack: (state, action) => {
             state.isComeBack = true;
-            //state.coin = {};
         },
         setIsComeBackFalse: (state, action) => {
             state.isComeBack = false;
@@ -42,7 +41,6 @@ const infoCoinSlice = createSlice({
                 state.status = 'successed';
                 state.coin = action.payload;
             })
-
     }
 })
 export { fetchGetMoreInfo };
