@@ -4,11 +4,12 @@ import { addSum } from "../../../../redux/slice/sumCaseSlice";
 import { removeBuy } from "../../../../redux/slice/buyCoinSlice";
 import toFixNumber from "../../../../utils/toFixNumber";
 import { addCoinInCase } from "../../../../redux/slice/coinInBriefcaseSlice";
+import { selectBuy, selectCoin } from "../../../../redux/selectors";
 
 const BuyButton = () => {
-    const buy = useSelector(state => state.buy);
-    const {coin} = useSelector(state => state.coin);
     const dispatch = useDispatch();
+    const buy = useSelector(selectBuy);
+    const {coin} = useSelector(selectCoin);
 
     const handleClick = () => {
         if(typeof buy === 'number' && !isNaN(buy)){

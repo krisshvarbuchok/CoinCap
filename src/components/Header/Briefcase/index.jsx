@@ -6,17 +6,18 @@ import ChangingPrice from "./ChangingPrice";
 import { fetchGetChangingPrice } from "../../../redux/slice/changingPriceSlice";
 import { useEffect } from "react";
 import { setStatusMyCoins } from "../../../redux/slice/coinInBriefcaseSlice";
+import { selectChangingPriceData, selectMyBriefcaseData, selectSum } from "../../../redux/selectors";
 
 const Briefcase = () => {
-    const { myCoins, statusMyCoins } = useSelector(state => state.myBriefcase);
+    const dispatch = useDispatch();
+    const { myCoins, statusMyCoins } = useSelector(selectMyBriefcaseData);
     console.log('myCoins', myCoins);
     
-    const dispatch = useDispatch();
-    const { sum } = useSelector(state => state.sum);
-    const { sumChanged, statusRefresh } = useSelector(state => state.changingPrice);
+    const { sum } = useSelector(selectSum);
+    const { sumChanged, statusRefresh } = useSelector(selectChangingPriceData);
     console.log('sumChanged', sumChanged);
-    const {newCoins} = useSelector(state => state.changingPrice)
-    console.log('newCoins', newCoins);
+    // const {newCoins} = useSelector(state => state.changingPrice)
+    // console.log('newCoins', newCoins);
     
 
 

@@ -2,10 +2,11 @@ import { Box, Input, Typography } from "@mui/material";
 import BuyButton from "./BuyButton";
 import { useDispatch, useSelector } from "react-redux";
 import { setBuy } from "../../../redux/slice/buyCoinSlice";
+import { selectBuy } from "../../../redux/selectors";
 
 const BuyCoin = () => {
     const dispatch = useDispatch();
-    const buy = useSelector(state => state.buy);
+    const buy = useSelector(selectBuy);
     
    // console.log('buy',typeof buy);
 

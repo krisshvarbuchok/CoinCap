@@ -6,12 +6,14 @@ import { addSum } from "../../redux/slice/sumCaseSlice";
 import CloseIcon from '@mui/icons-material/Close';
 import toFixNumber from "../../utils/toFixNumber";
 import { addCoinInCase } from "../../redux/slice/coinInBriefcaseSlice";
+import { selectIsOpenCoinPurchase, selectCoin, selectBuy } from "../../redux/selectors";
 
 const CoinPurchaseModal = () => {
-    const isOpenCoinPurchase = useSelector(state => state.isOpenCoinPurchase);
     const dispatch = useDispatch();
-    const { coin } = useSelector(state => state.coin);
-    const buy = useSelector(state => state.buy);
+    const isOpenCoinPurchase = useSelector(selectIsOpenCoinPurchase);
+    const { coin } = useSelector(selectCoin);
+    const buy = useSelector(selectBuy);
+
     const closeModal = () => {
         dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
         dispatch(removeBuy());

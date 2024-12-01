@@ -1,9 +1,10 @@
 import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import toFixNumber from "../../../utils/toFixNumber";
+import { selectListData } from "../../../redux/selectors";
 
 const PopularCrypto = () => {
-    const { popular } = useSelector(state => state.list);
+    const { popular } = useSelector(selectListData);
     // console.log(popular);
 
     return (

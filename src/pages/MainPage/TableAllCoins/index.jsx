@@ -12,23 +12,24 @@ import CoinPurchaseModal from "../../../components/CoinPurchaseModal";
 import { useEffect, useState } from "react";
 import toFixNumber from "../../../utils/toFixNumber";
 import stylesFunction from "../../../utils/stylesFunction";
+import { selectCoin, selectIsOpenCoinPurchase, selectListData } from "../../../redux/selectors";
 
 
 
 
 const TableAllCoins = () => {
-    const { data, statusData } = useSelector(state => state.list);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { data, statusData } = useSelector(selectListData);
+    const { status, isComeBack } = useSelector(selectCoin);
+    const isOpenCoinPurchase = useSelector(selectIsOpenCoinPurchase);
     //console.log(statusData);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     //console.log('loading', loading);
 
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { status, isComeBack } = useSelector(state => state.coin);
 
-    const isOpenCoinPurchase = useSelector(state => state.isOpenCoinPurchase);
     //console.log(isOpenCoinPurchase);
     // const LoadingSkeleton = () => (
     //     <Box sx={{ width: '100%' }}>

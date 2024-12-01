@@ -7,16 +7,17 @@ import { deleteSum } from "../../redux/slice/sumCaseSlice";
 import toFixNumber from "../../utils/toFixNumber";
 import { removeMyCoinCase } from "../../redux/slice/coinInBriefcaseSlice";
 import { refreshNewCoins } from "../../redux/slice/changingPriceSlice";
+import { selectMyBriefcaseData, selectIsOpenBriefcase, selectSum } from "../../redux/selectors";
 
 
 
 const BriefcaseModal = () => {
     const dispatch = useDispatch();
-    const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
-    const {myCoins} = useSelector(state => state.myBriefcase);
+    const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
+    const { myCoins } = useSelector(selectMyBriefcaseData);
     //console.log('myCoins', myCoins);
-    const { sum } = useSelector(state => state.sum);
-    //console.log(sum);
+    const { sum } = useSelector(selectSum);
+    //console.log('sum', sum);
     
 
     const closeModal = () => {

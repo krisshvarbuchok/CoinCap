@@ -2,13 +2,14 @@ import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { startOfMonth, subMonths, endOfToday, isWithinInterval } from 'date-fns';
+import { selectCoin, selectDiagram, selectTime } from "../../../../redux/selectors";
 
 
 const AllTime = () => {
-    const { statistic } = useSelector(state => state.diagram);
-    const { coin } = useSelector(state => state.coin);
+    const { statistic } = useSelector(selectDiagram);
+    const { coin } = useSelector(selectCoin);
     //console.log(statistic);
-    const time = useSelector(state => state.time);
+    const time = useSelector(selectTime);
 
 
     const startOfLastMonth = startOfMonth(subMonths(new Date(), 1)); // первое число прошлого месяца

@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGetChangingPrice } from "../../../../redux/slice/changingPriceSlice";
 import { Typography } from "@mui/material";
 import stylesFunction from "../../../../utils/stylesFunction";
+import { selectChangingPriceData, selectSum } from "../../../../redux/selectors";
 
 const MAX_PERCENT = 100;
 
 const ChangingPrice = () => {
     //const { myCoins } = useSelector(state => state.myBriefcase);
     //const dispatch = useDispatch();
-    const { sumChanged } = useSelector(state => state.changingPrice);
+    const { sumChanged } = useSelector(selectChangingPriceData);
     console.log(sumChanged);
-    const { sum } = useSelector(state => state.sum);
+    const { sum } = useSelector(selectSum);
     console.log(sum);
 
     //console.log('changingPrice', typeof sumChanged);

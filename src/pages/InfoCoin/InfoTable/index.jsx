@@ -3,10 +3,11 @@ import numeral from "numeral";
 import { useSelector } from "react-redux";
 import toFixNumber from "../../../utils/toFixNumber";
 import stylesFunction from "../../../utils/stylesFunction";
+import { selectCoin } from "../../../redux/selectors";
 
 const InfoTable = () => {
-    const { coin } = useSelector(state => state.coin);
-    console.log(coin);
+    const { coin } = useSelector(selectCoin);
+    //console.log(coin);
 
 
     return (

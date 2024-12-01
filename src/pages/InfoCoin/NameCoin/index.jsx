@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import { selectCoin } from "../../../redux/selectors";
 
 const NameCoin = () => {
 
-    const { coin } = useSelector(state => state.coin);
+    const { coin } = useSelector(selectCoin);
 
     return (
         <Box sx={{ display: 'flex', marginTop: '20px', marginBottom: '20px', justifyContent: 'center', gap: '20px' }}>

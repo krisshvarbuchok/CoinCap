@@ -9,11 +9,12 @@ import FooterComponent from "../../components/Footer";
 import { useSelector } from "react-redux";
 import ComeBack from "./ComeBack";
 import BriefcaseModal from "../../components/BriefcaseModal";
+import { selectCoin, selectIsOpenBriefcase } from "../../redux/selectors";
 
 const InfoCoin = () => {
     const navigate = useNavigate();
-    const { coin, status } = useSelector(state => state.coin);
-    const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
+    const { coin, status } = useSelector(selectCoin);
+    const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
 
   
     useEffect(() => {
