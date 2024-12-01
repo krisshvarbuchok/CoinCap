@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import { deleteSum } from "../../redux/slice/sumCaseSlice";
 import toFixNumber from "../../utils/toFixNumber";
 import { removeMyCoinCase } from "../../redux/slice/coinInBriefcaseSlice";
+import { refreshNewCoins } from "../../redux/slice/changingPriceSlice";
 
 
 
@@ -25,6 +26,7 @@ const BriefcaseModal = () => {
         //console.log(id);
         dispatch(removeMyCoinCase(id));
         dispatch(deleteSum(num));
+        dispatch(refreshNewCoins());
     }
 
 

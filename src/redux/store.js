@@ -8,6 +8,7 @@ import sumCaseSlice from "./slice/sumCaseSlice";
 import isOpenCoinPurchaseModalSlice from './slice/isOpenCoinPurchaseModalSlice';
 import isOpenBriefcaseModalSlice from "./slice/isOpenBriefcaseModalSlice";
 import coinInBriefcaseSlice from "./slice/coinInBriefcaseSlice";
+import changingPriceSlice from "./slice/changingPriceSlice";
 
 const store = configureStore({
     reducer:{
@@ -20,6 +21,7 @@ const store = configureStore({
         isOpenCoinPurchase: isOpenCoinPurchaseModalSlice,
         isOpenBriefcase: isOpenBriefcaseModalSlice,
         myBriefcase: coinInBriefcaseSlice,
+        changingPrice: changingPriceSlice,
     }
 })
 export default store;

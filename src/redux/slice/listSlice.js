@@ -8,7 +8,7 @@ const fetchGetСryptocurrency = createAsyncThunk('list/fetchGetСryptocurrency',
         //     throw new Error(`HTTP error! Status: ${response.status}`);
         //   }
         const data = await response.json();
-        console.log(data.data)
+        //console.log(data.data)
         return data.data;
    // }
     // catch (err) {

@@ -2,29 +2,47 @@ import { Box, IconButton, Typography } from "@mui/material";
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenBriefcase } from "../../../redux/slice/isOpenBriefcaseModalSlice";
+import ChangingPrice from "./ChangingPrice";
+import { fetchGetChangingPrice } from "../../../redux/slice/changingPriceSlice";
+import { useEffect } from "react";
+import { setStatusMyCoins } from "../../../redux/slice/coinInBriefcaseSlice";
 
 const Briefcase = () => {
+    const { myCoins, statusMyCoins } = useSelector(state => state.myBriefcase);
+    console.log('myCoins', myCoins);
     
     const dispatch = useDispatch();
     const { sum } = useSelector(state => state.sum);
+    const { sumChanged, statusRefresh } = useSelector(state => state.changingPrice);
+    console.log('sumChanged', sumChanged);
+    const {newCoins} = useSelector(state => state.changingPrice)
+    console.log('newCoins', newCoins);
     
-    
-    //const isOpenBriefcase = useSelector(state => state.isOpenBriefcase);
 
+
+    useEffect(() => {
+       // if(statusMyCoins === 'successed'){
+            myCoins.forEach(item => dispatch(fetchGetChangingPrice(item)));
+            console.log('сработал юзэффект');
+       //     dispatch(setStatusMyCoins())
+        //}
+       // localStorage.clear()
+        
+    }, [myCoins])
 
     const openBriefcase = () => {
         dispatch(setIsOpenBriefcase(true));
     }
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton 
-            onClick={openBriefcase}
+            <IconButton
+                onClick={openBriefcase}
                 size="large"
                 // edge="start"
                 // color="inherit"
                 // aria-label="menu"
                 sx={{
-                     '&:hover': {
+                    '&:hover': {
                         backgroundColor: 'transparent', // Сохраняем прозрачный фон при ховере
                     }
                 }}
@@ -35,8 +53,8 @@ const Briefcase = () => {
                         sm: 40, // для средних экранов
                         md: 70, // для больших экранов
                     }, '&:hover': { color: '#c92d82' }
-                }} 
-               
+                }}
+
                 />
             </IconButton>
 
@@ -65,6 +83,10 @@ const Briefcase = () => {
                         md: '16px', // для больших экранов
                     },
                 }}>{sum}$</Typography>
+
+                {(+sumChanged !== +sum && +sum !== 0 && statusRefresh === 'successed') && <ChangingPrice /> }
+                
+
             </Box>
         </Box>
     )
