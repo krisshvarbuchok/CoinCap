@@ -68,7 +68,7 @@ const InfoTable = () => {
               Процентное изменение цены за последние 24 часа
             </TableCell>
             <TableCell>
-              <Typography className={stylesFunction(coin.changePercent24Hr)}>
+              <Typography sx={styles.text} className={stylesFunction(coin.changePercent24Hr)}>
                 {coin.changePercent24Hr
                   ? `${toFixNumber(coin.changePercent24Hr)} %`
                   : "-"}

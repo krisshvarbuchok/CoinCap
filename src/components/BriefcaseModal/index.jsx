@@ -122,9 +122,18 @@ const BriefcaseModal = () => {
                     gap: '5px',
                     mt: 2,
                     mb: 2,
+                    fontSize: {
+                        xs: '14px', // Размер шрифта для маленьких экранов
+                        sm: '16px',
+                        md: '18px',
+                    },
 
                 }}>
-                    Итого: <Typography component="span" sx={{ fontWeight: 'bold' }}>{sum} $</Typography>
+                    Итого: <Typography component="span" sx={{ fontWeight: 'bold', fontSize: {
+                            xs: '14px', // Размер шрифта для маленьких экранов
+                            sm: '16px',
+                            md: '18px',
+                        }, }}>{sum} $</Typography>
                 </Typography>
             </TableContainer>
         </Dialog>
