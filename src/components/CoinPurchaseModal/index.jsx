@@ -26,7 +26,7 @@ const CoinPurchaseModal = () => {
         }
     }
     const handleClick = () => {
-        if (typeof buy === 'number' && !isNaN(buy)) {
+        if (typeof buy === 'number' && !isNaN(buy) && buy !== 0) {
             dispatch(addCoinInCase({...coin, count: buy}));
             dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
             dispatch(removeBuy());

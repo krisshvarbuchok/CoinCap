@@ -21,15 +21,18 @@ import {
   selectDiagram,
   selectTime,
 } from "../../../../redux/selectors";
+import ErrorComponent from "../../../../components/ErrorComponent";
 
 const AllTime = () => {
-  const { statistic } = useSelector(selectDiagram);
+  const { statistic, statusDiagram } = useSelector(selectDiagram);
   const { coin } = useSelector(selectCoin);
   const time = useSelector(selectTime);
 
   const startOfLastMonth = startOfMonth(subMonths(new Date(), 1)); // первое число прошлого месяца
   const end = endOfToday(); // сегодняшний день
-
+  if(statusDiagram === 'failed'){
+    return <ErrorComponent />
+  }
   return (
     <Box
       sx={{

@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import ComeBack from "./ComeBack";
 import BriefcaseModal from "../../components/BriefcaseModal";
 import { selectCoin, selectIsOpenBriefcase } from "../../redux/selectors";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
+import ErrorComponent from "../../components/ErrorComponent";
 
 const InfoCoin = () => {
   const navigate = useNavigate();
@@ -22,12 +25,28 @@ const InfoCoin = () => {
     }
   }, [coin]);
 
+  if(status === 'failed'){
+    return <ErrorComponent />
+  }
+
+
   return (
     <div className="container">
       <HeaderComponent />
       {isOpenBriefcase && <BriefcaseModal />}
       {status === "loading" ? (
-        <div>...loading</div>
+        <Stack
+          sx={{
+            color: "grey.500",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          spacing={2}
+          direction="row"
+        >
+          <CircularProgress color="secondary" />
+        </Stack>
       ) : (
         <>
           <NameCoin />

@@ -32,5 +32,6 @@ export const selectListData = createSelector(
         info: list.info,
         data: list.data,
         statusData: list.statusData,
+        error: list.error,
     })
 );

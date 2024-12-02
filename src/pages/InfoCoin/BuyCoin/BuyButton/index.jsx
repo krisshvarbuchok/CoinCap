@@ -9,10 +9,11 @@ import { selectBuy, selectCoin } from "../../../../redux/selectors";
 const BuyButton = () => {
   const dispatch = useDispatch();
   const buy = useSelector(selectBuy);
+  
   const { coin } = useSelector(selectCoin);
 
   const handleClick = () => {
-    if (typeof buy === "number" && !isNaN(buy)) {
+    if (typeof buy === "number" && !isNaN(buy) && buy !== 0 ) {
       dispatch(addCoinInCase({ ...coin, count: buy }));
       dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
       dispatch(removeBuy());

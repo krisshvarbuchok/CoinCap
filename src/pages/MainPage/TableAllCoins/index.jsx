@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
-import { Box, Paper, Skeleton } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import AddIcon from "@mui/icons-material/Add";
 import {
@@ -20,24 +20,17 @@ import {
   selectListData,
 } from "../../../redux/selectors";
 import numeralFormat from "../../../utils/numeralFormat";
+import ErrorComponent from "../../../components/ErrorComponent";
 
 const TableAllCoins = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data, statusData } = useSelector(selectListData);
+  const { data, statusData } = useSelector(selectListData);  
   const { status, isComeBack } = useSelector(selectCoin);
   const isOpenCoinPurchase = useSelector(selectIsOpenCoinPurchase);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
-  //console.log(isOpenCoinPurchase);
-  // const LoadingSkeleton = () => (
-  //     <Box sx={{ width: '100%' }}>
-  //         {[...Array(10)].map((_, index) => (
-  //             <Skeleton key={index} variant="rectangular" sx={{ my: 4, mx: 1 }} />
-  //         ))}
-  //     </Box>
-  // );
 
   const columns = [
     {
@@ -152,6 +145,9 @@ const TableAllCoins = () => {
     dispatch(fetchGetStatistic(id));
     navigate("/infoCoin");
   };
+  if(statusData === 'failed'){
+    return <ErrorComponent />
+  }
 
   return (
     <Box
@@ -172,17 +168,10 @@ const TableAllCoins = () => {
         }}
       >
         <DataGrid
-          rows={posts} // Передаем пустые строки во время загрузки
+          rows={posts} 
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[10, 20]}
-          // rowsPerPageOptionsSkeleton
-          // disableSelectionOnClick
-          // disableColumnMenu
-          //disableColumnSelector
-          // components={{
-          //     LoadingOverlay: LoadingSkeleton
-          // }}
           loading={loading}
           checkboxSelection={false}
           sx={{

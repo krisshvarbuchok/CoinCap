@@ -11,8 +11,11 @@ const ChangingPrice = () => {
     //const { myCoins } = useSelector(state => state.myBriefcase);
     //const dispatch = useDispatch();
     const { sumChanged } = useSelector(selectChangingPriceData);
+    //изменение суммы при одновлении, 
+    //я каждый раз перебираю массив коинов и делаю новые запросы
     console.log(sumChanged);
     const { sum } = useSelector(selectSum);
+    //привязано к локалстору старая сумма
     console.log(sum);
 
     //console.log('changingPrice', typeof sumChanged);

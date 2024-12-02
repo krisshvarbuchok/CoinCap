@@ -13,7 +13,9 @@ const BuyCoin = () => {
     const newValue = e.target.value;
     // Устанавливаем только если это цифры
     if (/^\d*$/.test(newValue)) {
-      dispatch(setBuy(+newValue));
+      //if (newValue !== "0" && newValue !== "") {
+        dispatch(setBuy(+newValue));
+      //}
     }
   };
 
