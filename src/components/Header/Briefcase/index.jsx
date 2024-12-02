@@ -8,6 +8,15 @@ import { useEffect } from "react";
 import { selectChangingPriceData, selectMyBriefcaseData } from "../../../redux/selectors";
 
 const Briefcase = () => {
+    const fontSizeStyles = {
+        fontSize: {
+          xs: '12px', 
+          sm: '14px', 
+          md: '16px', 
+        },
+      };
+
+
     const dispatch = useDispatch();
     const { myCoins } = useSelector(selectMyBriefcaseData);
     const {sum} = useSelector(state => state.myBriefcase);
@@ -30,45 +39,28 @@ const Briefcase = () => {
                 size="large"
                 sx={{
                     '&:hover': {
-                        backgroundColor: 'transparent', // Сохраняем прозрачный фон при ховере
+                        backgroundColor: 'transparent', 
                     }
                 }}
             >
                 <BusinessCenterIcon sx={{
                     fontSize: {
-                        xs: 30, // для маленьких экранов
-                        sm: 40, // для средних экранов
-                        md: 70, // для больших экранов
+                        xs: 30, 
+                        sm: 40, 
+                        md: 70, 
                     }, '&:hover': { color: '#c92d82' }
                 }}
-
                 />
             </IconButton>
 
-
-
-            <Box sx={{
-                fontSize: {
-                    xs: '12px', // для маленьких экранов
-                    sm: '14px', // для средних экранов
-                    md: '16px', // для больших экранов
-                },
-            }}>
+            <Box sx={{...fontSizeStyles}}>
                 <Typography sx={{
                     color: 'black',
-                    fontSize: {
-                        xs: '12px', // для маленьких экранов
-                        sm: '14px', // для средних экранов
-                        md: '16px', // для больших экранов
-                    },
+                    ...fontSizeStyles
                 }}>Итого:</Typography>
                 <Typography sx={{
                     color: '#c92d82', fontWeight: 'bold',
-                    fontSize: {
-                        xs: '12px', // для маленьких экранов
-                        sm: '14px', // для средних экранов
-                        md: '16px', // для больших экранов
-                    },
+                    ...fontSizeStyles
                 }}>{sum}$</Typography>
 
                 {(+sumChanged !== +sum && +sum !== 0 && statusRefresh === 'successed') && <ChangingPrice /> }

@@ -24,9 +24,7 @@ const changingPriceSlice = createSlice({
     newCoins: [],
   },
   reducers: {
-    refreshNewCoins: (state, action) => {
-        console.log('refreshNewCoins');
-        
+    refreshNewCoins: (state, action) => { 
       state.newCoins = [];
     },
   },
@@ -37,8 +35,6 @@ const changingPriceSlice = createSlice({
       })
       .addCase(fetchGetChangingPrice.fulfilled, (state, action) => {
         const { coin, count } = action.payload;
-        console.log(count);
-        
         if (state.newCoins.find((item) => item.id === coin.id)) {
           state.newCoins = state.newCoins.map((item) =>
             item.id === coin.id

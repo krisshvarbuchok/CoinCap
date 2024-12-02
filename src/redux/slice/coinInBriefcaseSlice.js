@@ -9,7 +9,6 @@ const coinInBriefcaseSlice = createSlice({
   name: "coinInBriefcase",
   initialState: {
     myCoins: [...getCoinsFromCaseLocal()],
-    statusMyCoins: "successed",
     sum: sumCoinLocal(),
   },
   reducers: {
@@ -34,9 +33,6 @@ const coinInBriefcaseSlice = createSlice({
         )
         .toFixed(2);
       addSumCoinsLocal(state.sum);
-
-      state.statusRefresh = "successed";
-      state.statusMyCoins = true;
     },
     removeMyCoinCase: (state, action) => {
       state.myCoins = state.myCoins.filter(
@@ -49,15 +45,10 @@ const coinInBriefcaseSlice = createSlice({
         )
         .toFixed(2);
       updateCoinsInLocal(state.myCoins);
-
       addSumCoinsLocal(state.sum);
-      state.statusMyCoins = "successed";
-    },
-    setStatusMyCoins: (state, action) => {
-      state.statusMyCoins = false;
     },
   },
 });
-export const { addCoinInCase, removeMyCoinCase, setStatusMyCoins } =
+export const { addCoinInCase, removeMyCoinCase } =
   coinInBriefcaseSlice.actions;
 export default coinInBriefcaseSlice.reducer;
