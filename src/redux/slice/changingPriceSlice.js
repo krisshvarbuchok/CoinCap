@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toFixNumber from "../../utils/toFixNumber";
-//import sumCoinLocal from "../../localStorage/sumCoin";
 
 const fetchGetChangingPrice = createAsyncThunk(
   "changingPrice/fetchGetChangingPrice",
@@ -10,8 +9,6 @@ const fetchGetChangingPrice = createAsyncThunk(
         `${import.meta.env.VITE_API_BASE_URL}/v2/assets/${coin.id}`
       );
       const result = await response.json();
-      // console.log('refresh', result.data);
-      //console.log('refreshCount', count);
       return { coin: result.data, count: coin.count };
     } catch (err) {
       console.log(err.name, err.message);
@@ -28,6 +25,8 @@ const changingPriceSlice = createSlice({
   },
   reducers: {
     refreshNewCoins: (state, action) => {
+        console.log('refreshNewCoins');
+        
       state.newCoins = [];
     },
   },
@@ -46,13 +45,11 @@ const changingPriceSlice = createSlice({
               ? { ...item, priceUsd: coin.priceUsd, count: count }
               : item
           );
-          // state.sumChanged = +state.sumChanged + (+toFixNumber(coin.priceUsd) * count);
         } else {
           state.newCoins.push({ ...coin, count: count });
-          //state.sumChanged = +state.sumChanged + (+toFixNumber(coin.priceUsd) * count);
         }
         state.sumChanged = state.newCoins
-          .reduce((acc, item) => acc + item.priceUsd * item.count, 0)
+          .reduce((acc, item) => acc + +toFixNumber(item.priceUsd) * item.count, 0)
           .toFixed(2);
         state.statusRefresh = "successed";
       });

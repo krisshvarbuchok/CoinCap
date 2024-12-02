@@ -1,26 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchGetChangingPrice } from "../../../../redux/slice/changingPriceSlice";
+import {  useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import stylesFunction from "../../../../utils/stylesFunction";
-import { selectChangingPriceData, selectSum } from "../../../../redux/selectors";
+import { selectChangingPriceData, selectMyBriefcaseData } from "../../../../redux/selectors";
 
 const MAX_PERCENT = 100;
 
 const ChangingPrice = () => {
-    //const { myCoins } = useSelector(state => state.myBriefcase);
-    //const dispatch = useDispatch();
     const { sumChanged } = useSelector(selectChangingPriceData);
-    //изменение суммы при одновлении, 
-    //я каждый раз перебираю массив коинов и делаю новые запросы
-    console.log(sumChanged);
-    const { sum } = useSelector(selectSum);
-    //привязано к локалстору старая сумма
-    console.log(sum);
+    //console.log('sumChanged' , sumChanged);
+   const {sum} = useSelector(selectMyBriefcaseData);
+   // console.log('sum', sum);
 
-    //console.log('changingPrice', typeof sumChanged);
     const changing = (sumChanged - +sum).toFixed(2);
-    const percentage = ((changing * MAX_PERCENT) / sum).toFixed(2);
+    const percentage = ((changing * MAX_PERCENT) / +sum).toFixed(2);
 
    
 

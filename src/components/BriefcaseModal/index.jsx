@@ -3,11 +3,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenBriefcase } from "../../redux/slice/isOpenBriefcaseModalSlice";
 import Paper from '@mui/material/Paper';
-import { deleteSum } from "../../redux/slice/sumCaseSlice";
 import toFixNumber from "../../utils/toFixNumber";
 import { removeMyCoinCase } from "../../redux/slice/coinInBriefcaseSlice";
 import { refreshNewCoins } from "../../redux/slice/changingPriceSlice";
-import { selectMyBriefcaseData, selectIsOpenBriefcase, selectSum } from "../../redux/selectors";
+import { selectMyBriefcaseData, selectIsOpenBriefcase } from "../../redux/selectors";
 
 
 
@@ -15,18 +14,15 @@ const BriefcaseModal = () => {
     const dispatch = useDispatch();
     const isOpenBriefcase = useSelector(selectIsOpenBriefcase);
     const { myCoins } = useSelector(selectMyBriefcaseData);
-    //console.log('myCoins', myCoins);
-    const { sum } = useSelector(selectSum);
-    //console.log('sum', sum);
+    const {sum} = useSelector(selectMyBriefcaseData)
+ 
     
 
     const closeModal = () => {
         dispatch(setIsOpenBriefcase(false));
     }
-    const handleDelete = (id, num) => {
-        //console.log(id);
+    const handleDelete = (id) => {
         dispatch(removeMyCoinCase(id));
-        dispatch(deleteSum(num));
         dispatch(refreshNewCoins());
     }
 
@@ -106,7 +102,7 @@ const BriefcaseModal = () => {
                                 <TableCell align="center" sx={{ fontWeight: 'bold' }}>{(+item.count * +toFixNumber(item.priceUsd)).toFixed(2)} $</TableCell>
                                 <TableCell align="center">
                                     <IconButton
-                                        onClick={() => handleDelete(item.id, (+item.count * +toFixNumber(item.priceUsd)).toFixed(2))}
+                                        onClick={() => handleDelete(item.id)}
                                         color="error"
                                     >
                                         <CloseIcon />

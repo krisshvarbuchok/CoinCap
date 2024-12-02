@@ -2,7 +2,6 @@ import { createSelector } from '@reduxjs/toolkit'
 
 export const selectMyBriefcase = state => state.myBriefcase;
 export const selectIsOpenBriefcase = state => state.isOpenBriefcase;
-export const selectSum = state => state.sum;
 export const selectIsOpenCoinPurchase = state => state.isOpenCoinPurchase;
 export const selectCoin = state => state.coin;
 export const selectBuy = state => state.buy;
@@ -15,7 +14,8 @@ export const selectMyBriefcaseData = createSelector(
     [selectMyBriefcase],
     briefcase => ({
         myCoins: briefcase.myCoins,
-        statusMyCoins: briefcase.statusMyCoins
+        statusMyCoins: briefcase.statusMyCoins,
+        sum: briefcase.sum,
     })
 );
 export const selectChangingPriceData = createSelector(

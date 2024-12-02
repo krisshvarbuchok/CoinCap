@@ -5,30 +5,19 @@ import { setIsOpenBriefcase } from "../../../redux/slice/isOpenBriefcaseModalSli
 import ChangingPrice from "./ChangingPrice";
 import { fetchGetChangingPrice } from "../../../redux/slice/changingPriceSlice";
 import { useEffect } from "react";
-import { setStatusMyCoins } from "../../../redux/slice/coinInBriefcaseSlice";
-import { selectChangingPriceData, selectMyBriefcaseData, selectSum } from "../../../redux/selectors";
+import { selectChangingPriceData, selectMyBriefcaseData } from "../../../redux/selectors";
 
 const Briefcase = () => {
     const dispatch = useDispatch();
-    const { myCoins, statusMyCoins } = useSelector(selectMyBriefcaseData);
-    console.log('myCoins', myCoins);
-    
-    const { sum } = useSelector(selectSum);
+    const { myCoins } = useSelector(selectMyBriefcaseData);
+    const {sum} = useSelector(state => state.myBriefcase);
     const { sumChanged, statusRefresh } = useSelector(selectChangingPriceData);
-    console.log('sumChanged', sumChanged);
-    // const {newCoins} = useSelector(state => state.changingPrice)
-    // console.log('newCoins', newCoins);
+    //console.log('sumChanged', sumChanged);
     
 
 
     useEffect(() => {
-       // if(statusMyCoins === 'successed'){
             myCoins.forEach(item => dispatch(fetchGetChangingPrice(item)));
-            console.log('сработал юзэффект');
-       //     dispatch(setStatusMyCoins())
-        //}
-       // localStorage.clear()
-        
     }, [myCoins])
 
     const openBriefcase = () => {
@@ -39,9 +28,6 @@ const Briefcase = () => {
             <IconButton
                 onClick={openBriefcase}
                 size="large"
-                // edge="start"
-                // color="inherit"
-                // aria-label="menu"
                 sx={{
                     '&:hover': {
                         backgroundColor: 'transparent', // Сохраняем прозрачный фон при ховере

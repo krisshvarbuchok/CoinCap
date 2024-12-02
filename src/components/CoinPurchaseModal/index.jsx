@@ -2,9 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenCoinPurchase } from "../../redux/slice/isOpenCoinPurchaseModalSlice";
 import { removeBuy, setBuy } from "../../redux/slice/buyCoinSlice";
-import { addSum } from "../../redux/slice/sumCaseSlice";
 import CloseIcon from '@mui/icons-material/Close';
-import toFixNumber from "../../utils/toFixNumber";
 import { addCoinInCase } from "../../redux/slice/coinInBriefcaseSlice";
 import { selectIsOpenCoinPurchase, selectCoin, selectBuy } from "../../redux/selectors";
 
@@ -28,7 +26,6 @@ const CoinPurchaseModal = () => {
     const handleClick = () => {
         if (typeof buy === 'number' && !isNaN(buy) && buy !== 0) {
             dispatch(addCoinInCase({...coin, count: buy}));
-            dispatch(addSum((+buy * +toFixNumber(coin.priceUsd)).toFixed(2)));
             dispatch(removeBuy());
             dispatch(setIsOpenCoinPurchase(!isOpenCoinPurchase));
         }

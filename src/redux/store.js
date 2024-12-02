@@ -4,7 +4,6 @@ import infoCoinSlice from "./slice/infoCoinSlice";
 import diagramSlice from "./slice/diagramSlice";
 import timeForDiagramSlice from "./slice/timeForDiagramSlice";
 import buyCoinSlice from "./slice/buyCoinSlice";
-import sumCaseSlice from "./slice/sumCaseSlice";
 import isOpenCoinPurchaseModalSlice from "./slice/isOpenCoinPurchaseModalSlice";
 import isOpenBriefcaseModalSlice from "./slice/isOpenBriefcaseModalSlice";
 import coinInBriefcaseSlice from "./slice/coinInBriefcaseSlice";
@@ -17,7 +16,6 @@ const store = configureStore({
     diagram: diagramSlice,
     time: timeForDiagramSlice,
     buy: buyCoinSlice,
-    sum: sumCaseSlice,
     isOpenCoinPurchase: isOpenCoinPurchaseModalSlice,
     isOpenBriefcase: isOpenBriefcaseModalSlice,
     myBriefcase: coinInBriefcaseSlice,
