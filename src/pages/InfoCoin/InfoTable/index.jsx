@@ -79,7 +79,10 @@ const InfoTable = () => {
             <TableCell>Сайт</TableCell>
             <TableCell>
               {coin.explorer ? (
-                <Link href={coin.explorer} underline="hover" color="black">
+                <Link href={coin.explorer} underline="hover" color="black"
+                sx={styles.link}
+                title={coin.explorer} // Показываем полный текст при наведении
+                >
                   {coin.explorer}
                 </Link>
               ) : (

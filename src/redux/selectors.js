@@ -22,7 +22,7 @@ export const selectChangingPriceData = createSelector(
     [selectChangingPrice],
     changingPrice => ({
         sumChanged: changingPrice.sumChanged,
-        statusRefresh: changingPrice.statusRefresh
+        statusRefresh: changingPrice.statusRefresh,
     })
 );
 export const selectListData = createSelector(

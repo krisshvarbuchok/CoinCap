@@ -54,7 +54,6 @@ const infoCoinSlice = createSlice({
             })
             .addCase(fetchGetMoreInfo.fulfilled, (state, action) => {
                 state.status = 'successed';
-                //state.errorCoin = null;
                 state.coin = action.payload;
             })
             .addCase(fetchGetMoreInfo.rejected, (state, action) => {

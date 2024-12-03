@@ -67,6 +67,7 @@ const BriefcaseModal = () => {
               <TableCell align="center" sx={styles.cell}>
                 Итого
               </TableCell>
+              <TableCell ></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

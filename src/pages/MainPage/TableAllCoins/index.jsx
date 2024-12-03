@@ -36,7 +36,8 @@ const TableAllCoins = () => {
     {
       field: "rank",
       headerName: "№",
-      width: 50,
+      flex: 0.1,
+      // width: 50,
       sortable: false,
       disableColumnMenu: true,
       description:
@@ -45,7 +46,8 @@ const TableAllCoins = () => {
     {
       field: "symbol",
       headerName: "",
-      width: 70,
+      flex: 1,
+      // width: 70,
       sortable: false,
       disableColumnMenu: true,
       cellClassName: `${styles.symbolStyle}`,
@@ -54,7 +56,8 @@ const TableAllCoins = () => {
       field: "name",
       headerName: "Name",
       disableColumnMenu: true,
-      width: 170,
+      flex: 1,
+      // width: 170,
       cellClassName: `${styles.nameStyle}`,
       renderCell: (params) => (
         <div
@@ -73,7 +76,8 @@ const TableAllCoins = () => {
       field: "vwap24Hr",
       headerName: "VWAP (24Hr)",
       description: "Volume Weighted Average Price in the last 24 hours.",
-      width: 170,
+      // width: 170,
+      flex: 1,
       align: "center",
       valueGetter: (value) => `${toFixNumber(value)} $`,
     },
@@ -81,7 +85,8 @@ const TableAllCoins = () => {
       field: "changePercent24Hr",
       headerName: "Change (24Hr)",
       description: "The direction and value change in the last 24 hours.",
-      width: 170,
+      //width: 170,
+      flex: 1,
       cellClassName: (params) => stylesFunction(params.value),
       align: "center",
       valueGetter: (value) => `${toFixNumber(value)} $`,
@@ -90,14 +95,16 @@ const TableAllCoins = () => {
       field: "marketCapUsd",
       headerName: "Market Cap",
       description: "Available supply for trading x price.",
-      width: 150,
+      //width: 150,
+      flex: 1,
       align: "center",
       valueGetter: (value) => numeralFormat(value),
     },
     {
       field: "priceUsd",
       headerName: "Price",
-      width: 140,
+      //width: 140,
+      flex: 1,
       align: "center",
       description:
         "Volume-weighted price based on real-time market data, translated to USD.",
@@ -107,7 +114,8 @@ const TableAllCoins = () => {
     {
       field: "addIcon",
       headerName: "",
-      width: 45,
+      //width: 45,
+      flex: 0.5,
       sortable: false,
       align: "center",
       disableColumnMenu: true, // This will disable the column menu
@@ -162,9 +170,10 @@ const TableAllCoins = () => {
       <CoinPurchaseModal />
       <Paper
         sx={{
-          height: "100%",
+          // height: "100%",
           width: "100%",
           boxShadow: "none",
+          overflowX: "auto", 
         }}
       >
         <DataGrid
@@ -177,10 +186,23 @@ const TableAllCoins = () => {
           sx={{
             border: 1,
             minHeight: 600,
+            minWidth:750,
+            // overflowX: "auto", 
             borderColor: "#c92d82",
+            "& .MuiDataGrid-cell ":{
+              fontSize: {
+                xs: "12px",
+                sm: "14px",
+                md: "16px",
+              },
+            },
             "& .MuiDataGrid-columnHeaderTitle": {
               fontWeight: "bold",
-              fontSize: "1rem",
+              fontSize: {
+                xs: "12px",
+                sm: "14px",
+                md: "16px",
+              },
             },
           }}
         />

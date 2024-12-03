@@ -7,6 +7,7 @@ import { fetchGetChangingPrice } from "../../../redux/slice/changingPriceSlice";
 import { useEffect } from "react";
 import { selectChangingPriceData, selectMyBriefcaseData } from "../../../redux/selectors";
 
+
 const Briefcase = () => {
     const fontSizeStyles = {
         fontSize: {
@@ -21,7 +22,7 @@ const Briefcase = () => {
     const { myCoins } = useSelector(selectMyBriefcaseData);
     const {sum} = useSelector(state => state.myBriefcase);
     const { sumChanged, statusRefresh } = useSelector(selectChangingPriceData);
-    //console.log('sumChanged', sumChanged);
+    
     
 
 
@@ -64,7 +65,7 @@ const Briefcase = () => {
                 }}>{sum}$</Typography>
 
                 {(+sumChanged !== +sum && +sum !== 0 && statusRefresh === 'successed') && <ChangingPrice /> }
-                
+                {statusRefresh === "failed" && <Typography sx={{color: 'black'}}>...oops</Typography>}
 
             </Box>
         </Box>

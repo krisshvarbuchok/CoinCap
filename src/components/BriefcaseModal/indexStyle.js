@@ -30,13 +30,9 @@ export const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: "150px",
+    maxHeight: "70vh",
+    
     "& .MuiTableCell-root": {
-      fontSize: {
-        xs: "12px",
-        sm: "14px",
-        md: "16px",
-      },
       padding: "8px",
     },
     "& .MuiTableRow-root": {
@@ -44,15 +40,27 @@ export const styles = {
     },
   },
   table: {
-    width: "80%",
+    width: "100%",
     marginBottom: "20px",
     height: "30px",
+    "& .MuiTableCell-root": {
+        fontSize: {
+          xs: "12px", // Меньше текст на маленьких экранах
+          sm: "14px",
+          md: "16px",
+        },
+        padding: {
+          xs: "4px", // Уменьшенные отступы на мобильных
+          sm: "8px",
+          md: "16px",
+        },
+      },
   },
   cell: {
     fontWeight: "bold",
   },
   total: {
-    width: "100%",
+    // width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

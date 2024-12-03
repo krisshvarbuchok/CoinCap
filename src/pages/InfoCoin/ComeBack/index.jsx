@@ -9,6 +9,8 @@ const ComeBack = () => {
   const navigate = useNavigate();
 
   const handleComeBack = () => {
+    //console.log('работает');
+    
     navigate("/");
     dispatch(removeInfoCoinFromComeBack());
     dispatch(removeBuy());
