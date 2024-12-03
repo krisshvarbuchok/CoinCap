@@ -6,8 +6,16 @@ const fetchGetChangingPrice = createAsyncThunk(
   async (coin, {rejectWithValue}) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/v2/assets/${coin.id}`
+        `${import.meta.env.VITE_API_BASE_URL}/v2/assets/${coin.id}`,
+        {
+          method: 'GET', 
+          headers: {
+            'Accept-Encoding': 'deflate',
+            'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`,
+          },
+        }
       );
+      import.meta.env.VITE_API_KEY
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

@@ -5,7 +5,14 @@ const fetchGetСryptocurrency = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/v2/assets`
+        `${import.meta.env.VITE_API_BASE_URL}/v2/assets`,
+        {
+          method: 'GET', 
+          headers: {
+            'Accept-Encoding': 'deflate',
+            'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`,
+          },
+        }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -17,8 +24,6 @@ const fetchGetСryptocurrency = createAsyncThunk(
       }
       return result.data;
     } catch (err) {
-     // console.error("Error fetching cryptocurrency:", err);
-      
       console.log("Error details:", {
         name: err.name,
         message: err.message,

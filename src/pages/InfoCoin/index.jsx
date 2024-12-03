@@ -31,8 +31,6 @@ const InfoCoin = () => {
     
     useEffect(() => {window.addEventListener('popstate', onBackButtonEvent);
       return () => {
-        console.log('размонт');
-        
         window.removeEventListener('popstate', onBackButtonEvent);
     
     };}, [])

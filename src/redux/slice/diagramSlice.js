@@ -2,7 +2,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const fetchGetStatistic = createAsyncThunk('statistic/fetchGetStatistic', async (id, {rejectWithValue}) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v2/assets/${id}/history?interval=d1`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v2/assets/${id}/history?interval=d1`,
+            {
+                method: 'GET',
+                headers: {
+                  'Accept-Encoding': 'deflate',
+                  'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`,
+                },
+              }
+        );
         if (!response.ok) {
             // Обработка HTTP-ошибок
             throw new Error(`HTTP error! Status: ${response.status}`);
